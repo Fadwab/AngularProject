@@ -1,0 +1,74 @@
+<br>
+<br>
+
+<br>
+<br>
+
+<h3>Horloge</h3>
+
+<!-- {{ clock | date:'H:mm (dd MMM yyyy) ' }} -->
+<div class="well"><strong> {{ clockString }}</strong></div>
+
+
+<a routerLink="/alarms/new" class="btn btn-warning space-little">
+  <span class="glyphicon glyphicon-plus"></span>
+  Nouvel réveil
+</a>
+<br><br>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col-xs-1 text-center">Tache</th>
+        <th class="col-xs-1 text-center">Jours</th>
+     <!--    <th class="col-xs-1 text-center">mp3</th> -->
+        <th class="col-xs-1 text-center">Temps</th>
+<!--         <th class="col-xs-1 text-center">Auto stop</th>
+        <th class="col-xs-1 text-center">stop tapis temps</th> -->
+        <th class="col-xs-1 text-center">Editer</th>
+        <th class="col-xs-1 text-center">Activer</th>
+        <th class="col-xs-1 text-center">Supprimer</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let alarmclock of alarmclocks">
+          <td class="col-md-1 text-center">{{alarmclock.name}}</td>
+          <td class="col-md-2 text-center">
+            <div class="col-xs-1"><span class="text-{{ alarmclock.monday ? 'warning' : 'muted' }}">L</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.tuesday ? 'warning' : 'muted' }}">M</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.wednesday ? 'warning' : 'muted' }}">M</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.thursday ? 'warning' : 'muted' }}">J</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.friday ? 'warning' : 'muted' }}">V</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.saturday ? 'warning' : 'muted' }}">S</span></div>
+            <div class="col-xs-1"><span class="text-{{ alarmclock.sunday ? 'warning' : 'muted' }}">D</span></div>
+
+          </td>
+<!--           <td class="col-md-1 text-center">{{alarmclock.mp3_playback}}</td>   -->        
+          <td class="col-md-1 text-center">{{ alarmclock.hour < 10 ? '0' : '' }}{{alarmclock.hour}}:{{ alarmclock.minute < 10 ? '0' : '' }}{{alarmclock.minute}}</td>
+<!--           <td class="col-md-1 text-center">{{alarmclock.auto_stop_seconds}}</td>
+          <td class="col-md-1 text-center">{{alarmclock.stop_seconds_hit_rug}}</td>          
+ -->          <td class="col-md-1 text-center">
+            <a [routerLink]="['/alarms', alarmclock.id]" type="button" class="btn btn-default btn-sm">
+              <span class="glyphicon glyphicon-edit"></span>
+            </a>
+          </td>
+          <td class="col-md-1 text-center">
+            <a (click)="switchActiveAlarmClock(alarmclock)" type="button" class="btn btn-{{ alarmclock.is_active ? 'warning' : 'default' }} btn-sm">
+              <span class="glyphicon {{ alarmclock.is_active ? 'glyphicon-check' : 'glyphicon-unchecked' }}"></span>
+            </a>
+          </td>
+          <td class="col-md-1 text-center">
+            <a (click)="confirmDeleteAlarmClock(alarmclock)" type="button" class="btn btn-danger btn-sm">
+              <span class="glyphicon glyphicon-trash"></span>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+  </table>
+</div>
+
+<app-confirm-delete-modal
+[message]="message"
+[modalConfirmDeleteIsVisible]="modalConfirmDeleteAlarmClockIsVisible"
+(onConfirm)="onConfirm($event)" >
+</app-confirm-delete-modal>

@@ -1,0 +1,138 @@
+<form #f="ngForm" (ngSubmit)="onSearch(f.value)" style="width:500px;">
+
+
+<table   style="width:215%">
+
+
+<tr>
+  <td>
+  <label class="col-form-label" for="nom">Nom</label>
+  </td>
+<td style="height:100px">
+  <input type="text" class="form-control" placeholder="Nom" id="nom">
+</td>
+</tr>
+<tr>
+<td >
+<label class="col-form-label" for="etage">Etage</label>
+</td>
+<td>
+   <input type="text" class="form-control" placeholder="Etage" id="etage">
+  </td>
+</tr>
+
+<tr>
+<td  style="height:100px">
+<label class="col-form-label" for="bloc">Bloc</label>
+</td>
+<td>
+   <input type="text" class="form-control" placeholder="Bloc" id="bloc">
+  </td>
+</tr>
+
+<tr>
+<td >
+<label for="capacite">Capacité</label>
+</td>
+<td>
+   <input type="email" class="form-control" id="capacite" aria-describedby="capacite" placeholder="Capacité">
+  </td>
+</tr>
+ <tr>
+    <td style="height:100px">
+    </td>
+    <td style="text-align: right">
+      <button mat-raised-button color="warn" style="padding-right:20%">Ajouter </button>
+      </td>
+  </tr>
+</table>
+
+
+<div class="example-container mat-elevation-z8" id="listCollaborateur">
+  <div class="example-header" style="background-color:white !important;">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="nom">
+      <mat-header-cell *matHeaderCellDef> Nom </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nom}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="etage">
+      <mat-header-cell *matHeaderCellDef> Etage </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.etage}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="bloc">
+      <mat-header-cell *matHeaderCellDef> Bloc </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.bloc}} </mat-cell>
+    </ng-container>
+     <ng-container matColumnDef="capacite">
+      <mat-header-cell *matHeaderCellDef> Capacite </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.capacite}} </mat-cell>
+    </ng-container>
+
+
+
+
+<ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+
+
+
+
+        <a (click)="openDialogConsult(element.id , element.nom ,element.etage, element.bloc , element.capacite )"   class="pointer">
+            <span class="glyphicon glyphicon-eye-open"></span>
+        </a> 
+
+        
+        
+
+
+
+
+         <a (click)="openDialog(element.nom)"    class="pointer">
+          <span class="glyphicon glyphicon-edit" ></span></a>
+        
+        
+        
+        
+          <a (click)="openDialogDelete()" class="pointer"><span class="glyphicon glyphicon-trash"></span></a>
+     
+        </mat-cell>
+    
+
+
+
+        
+    
+    
+    
+      </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>
