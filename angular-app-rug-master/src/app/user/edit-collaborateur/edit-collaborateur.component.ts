@@ -36,11 +36,26 @@ constructor(public dialogRef: MatDialogRef<EditCollaborateurComponent>,
     this.dialogRef.close();
   }
 
-  stopEdit(): void {
-    this.dataService.updateItem(this.data);
+  //stopEdit(): void {
+   // this.dataService.updateItem(this.data);
+  //}
+
+stopEdit() {
+    try {
+    this.dataService.updateItem(this.data.matricule,this.data)
+      .subscribe(resp => {
+       this.data = resp
+
+      },
+        error => {
+          console.error("Error saving food!");
+        }
+      );
+    }
+    catch (e) {
+      console.log(e);
+    }
   }
-
-
 
 
 

@@ -1,18 +1,11 @@
-<div class="container">
-  <h3 mat-dialog-title>Are you sure?</h3>
-  <div mat-dialog-content>
-   Matricule: {{data.matricule}}
-    <p></p>
-    Nom: {{data.nom}}
-    <p></p>
-    Prenom: {{data.prenom}}
-    <p></p>
-    Email: {{data.email}}
-    <p></p>
-  </div>
 
-  <div mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="1" (click)="confirmDelete()">Delete</button>
-    <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+ <br> <br> 
+Vous êtes sûrs de la suppression de ce collaborateur ? 
+<br>
+<br> <br> 
+
+<div class="col-md-4"> </div>
+  <div mat-dialog-actions class="col-md-8">
+    <button  mat-raised-button color="warn" [mat-dialog-close]="1" (click)="confirmDelete()">Supprimer</button>
+    <button mat-button (click)="onNoClick()" tabindex="-1">Annuler</button>
   </div>
-</div>

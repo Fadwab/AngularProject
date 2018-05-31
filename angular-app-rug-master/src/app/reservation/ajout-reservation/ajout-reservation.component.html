@@ -1,80 +1,10 @@
-<!-- 
-<h3>
-  Edit events
-  <button
-    class="btn btn-primary pull-right"
-    (click)="addEvent()">
-    Add new
-  </button>
-  <div class="clearfix"></div>
-</h3>
 
 
 
-<table class="table table-bordered">
-
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Primary color</th>
-      <th>Secondary color</th>
-      <th>Starts at</th>
-      <th>Ends at</th>
-      <th>Remove</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr *ngFor="let event of events; let index = index">
-      <td>
-        <input
-          type="text"
-          class="form-control"
-          [(ngModel)]="event.title"
-          (keyup)="refresh.next()">
-      </td>
-      <td>
-        <input
-          type="color"
-          [(ngModel)]="event.color.primary"
-          (change)="refresh.next()">
-      </td>
-      <td>
-        <input
-          type="color"
-          [(ngModel)]="event.color.secondary"
-          (change)="refresh.next()">
-      </td>
-      <td>
-        <mwl-demo-utils-date-time-picker
-          [(ngModel)]="event.start"
-          (ngModelChange)="refresh.next()"
-          placeholder="Not set">
-        </mwl-demo-utils-date-time-picker>
-      </td>
-      <td>
-        <mwl-demo-utils-date-time-picker
-          [(ngModel)]="event.end"
-          (ngModelChange)="refresh.next()"
-          placeholder="Not set">
-        </mwl-demo-utils-date-time-picker>
-      </td>
-      <td>
-        <button
-          class="btn btn-danger"
-          (click)="events.splice(index, 1); refresh.next()">
-          Delete
-        </button>
-      </td>
-    </tr>
-  </tbody>
-
-</table>
--->
 
 
-<fieldset class="blocRecherche">
-  <legend style="color: black">Rechercher une salle</legend>
+<div class="col-md-5"></div>
+  <legend style="color: black">Réserver la salle</legend>
  
 <div class="form-group">  
   <div class="row">
@@ -101,7 +31,7 @@
 <br><br>
 
 <div class="form-group">
-      <label for="exampleSelect1">Nombre de personne</label>
+      <label for="exampleSelect1">Nombre de personnes</label>
       <select class="form-control" id="exampleSelect1"  [(ngModel)]="recherche.nb_participants">
         <option>1</option>
         <option>2</option>
@@ -109,43 +39,96 @@
         <option>4</option>
         <option>5</option>
         <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>*
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+        <option>16</option>
+        
+        
       </select>
     </div>
 
 
 <br>
-<div class="col-md-4"></div>
-<div>
-  <mat-slide-toggle  [(ngModel)]="recherche.videoConf"><p>Védio conf</p></mat-slide-toggle>
-</div>
-<br>
-<div class="col-md-4"></div>
-<div>
-<mat-slide-toggle [(ngModel)]="recherche.retro"><p>Rétroprojecteur</p></mat-slide-toggle>
-</div>
-<br>
-<div class="col-md-4"></div>
-<div>
-<mat-slide-toggle [(ngModel)]="recherche.tableau"><p>Tableau</p></mat-slide-toggle>
-</div>
-<br>
-<div class="col-md-4"></div>
-<div>
-<mat-slide-toggle [(ngModel)]="recherche.climatisation"><p>Climatisation</p></mat-slide-toggle>
-</div>
 
+<!--
 <div class="col-md-4"></div>
 <div class="col-md-6"></div>
  <button mat-raised-button color="warn" class="pull-right" (click)="rechercher()">
    Lancer ma recherche
   </button>
 </fieldset>
-<br />
+<br />-->
 
 
 
 
 
+
+
+
+
+
+
+<table class="table table-responsive">
+ <tr *ngFor="let salle of salles">
+  <td width=10%> 
+   <input type="radio" name="salle" value="{{salle.salle_id}}" [(ngModel)]="recherche.salle">
+  </td>
+  <td width=90%>
+    <div>
+      <p>
+      {{ salle.nom }}
+      <span *ngIf="!visible[salle.salle_id]" (click)="visible[salle.salle_id] = !visible[salle.salle_id]" class="BtnDetail">Afficher</span>
+      <span *ngIf="visible[salle.salle_id]" (click)="visible[salle.salle_id] = !visible[salle.salle_id]" class="BtnDetail">Masquer</span>
+      </p>
+      <div *ngIf="visible[salle.salle_id]">
+        <p>Capacite: {{salle.capacite}}</p>
+        <p>etage: {{salle.etage}}</p>
+        <p>bloc: {{salle.bloc}}</p> 
+        <p>vedeo_conf: {{salle.vedeo_conf}}</p>
+        <p>retroprojecteur: {{salle.retroprojecteur}}</p>
+        <p>tableau: {{salle.tableau}}</p>
+        <p>climatisation: {{salle.climatisation}}</p>
+      </div>
+    </div>
+  </td>
+
+</tr>
+
+
+
+
+</table>
+
+  <div class="form-group">
+  <label class="col-form-label" for="inputDefault">Titre de la réunion</label>
+  <input type="text" class="form-control" placeholder="Default input" id="inputDefault"  [(ngModel)]="recherche.titre">
+</div>
+
+
+
+<div class="form-group">
+  <label class="col-form-label" for="inputDefault">Coleur</label>
+  <input type="color" [(ngModel)]="recherche.myColor">
+</div>
+
+
+
+<button
+    class="btn btn-warning pull-right"
+    (click)="onButtonClicked()">
+    Ajouter réservation
+  </button>
+
+
+<!--
 <div *ngIf="salles">
 
 
@@ -212,4 +195,4 @@
   
 </div>
 
-  
+  -->

@@ -7,24 +7,62 @@ import { ReservationComponent } from "./reservation/reservation/reservation.comp
 import { GestionAcceeComponent } from "./user/gestion-accee/gestion-accee.component";
 import { GestionSallesComponent } from "./salle/gestion-salles/gestion-salles.component";
 import { ChatComponent } from "./chat/chat/chat.component";
-import { AppContenuComponent } from "./app-contenu/app-contenu.component";
+import { CollaborateurComponent } from "./collaborateur/collaborateur.component";
 import { ReservationEventDayComponent } from "./reservation/reservation-event-day/reservation-event-day.component";
 import { ReservationEventWeekComponent } from "./reservation/reservation-event-week/reservation-event-week.component";
+import { LesSallesComponent } from "./salle/les-salles/les-salles.component";
+import { AdminComponent } from "./admin/admin.component";
+import { AuthguardGuard } from "./authguard.guard";
 const routes: Routes = [
-    { path: '', component: LoginComponent },
+    {path: 'admin' ,component:AdminComponent, pathMatch:'prefix', canActivate:[AuthguardGuard],
+    children: [  
+      
+      { path: '', component: ReservationEventComponent, },
+      { path: 'reserv', component:ReservationComponent },
+            {
+                path:'gestion',
+                component: GestionAcceeComponent,
+            },
+            
+          { path: 'lesSalles' ,component: LesSallesComponent},
+          
+          { path: 'gestionSalles', component: GestionSallesComponent, },
+          
+          ]
+    },
+    {path: 'collaborateur' ,component:CollaborateurComponent, canActivate:[AuthguardGuard],
+  children: [  
+      
+      { path: '', component: ReservationEventComponent, },
+      { path: 'reserv', component:ReservationComponent },
+      { path: 'lesSalles' ,component: LesSallesComponent},
+  ]
+  
+  
+  
+  
+  },
+
     //{ path: 'dashboard', component: AppContenuComponent },
-    { path: 'month', component: ReservationEventComponent, },
-    { path: 'reserv', component:ReservationComponent },
-    { path: 'gestion', component: GestionAcceeComponent, },  
-    { path: 'gestionSalles', component: GestionSallesComponent, },
+     { path: 'login', component: LoginComponent, },
+
+    // { path: 'month', component: ReservationEventComponent, },
+     { path: 'reserv', component:ReservationComponent },
+    //{ path: 'gestion', component: GestionAcceeComponent, },  
+   // { path: 'gestionSalles', component: GestionSallesComponent, },
     { path: 'chat', component: ChatComponent,},
   
     { path: 'day' ,component: ReservationEventDayComponent},
-     { path: 'week' ,component: ReservationEventWeekComponent}
+     { path: 'week' ,component: ReservationEventWeekComponent},
+     //{ path: 'lesSalles' ,component: LesSallesComponent},
+     
+    
+     { path: '', redirectTo:'login',pathMatch:"full" },
 ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+   
   ],
   exports: [
     RouterModule

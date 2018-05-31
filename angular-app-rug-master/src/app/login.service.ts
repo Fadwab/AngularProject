@@ -3,16 +3,20 @@ import { HttpClient } from "@angular/common/http";
 
 @Injectable()
 export class LoginService {
-private host:string="http://localhost:8000/api/users/login";
-  private jwtToken=null;
+private host:string="http://localhost:8000/webapi/login";
+  private jwtToken:String;
   private roles:Array<any>=[];
   constructor(private http:HttpClient) { }
+  role:boolean;
 
 
-
+  getrole(user){
+   return this.http.get(this.host,user.username); 
+  }
   login(user){
     return this.http.post(this.host,user, {observe : "response"});
   }
+
   logout(){
     this.jwtToken=null;
     localStorage.removeItem("token");
@@ -21,6 +25,16 @@ private host:string="http://localhost:8000/api/users/login";
   loadToken(){
     this.jwtToken=localStorage.getItem("token");
   }
- 
+ isAdmin(){
+   for(let r of this.roles){
+     if (r == 0) return true;
+console.log(r);
+   
+   
+return false;
+
+   }
+
+ }
 
 }

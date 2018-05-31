@@ -42,7 +42,7 @@ import { RouterModule } from '@angular/router';
     MatTableModule,
     HttpClientModule,
     MatPaginatorModule,
-    BrowserAnimationsModule,
+  
     CalendarModule.forRoot(),
     NgbModalModule.forRoot(),
     DemoUtilsModule,
@@ -67,7 +67,7 @@ import { RouterModule } from '@angular/router';
     MatTableModule,
     HttpClientModule,
     MatPaginatorModule,
-    BrowserAnimationsModule,
+    
     DemoUtilsModule,
     MatIconModule,
     MatInputModule , MatButtonModule,

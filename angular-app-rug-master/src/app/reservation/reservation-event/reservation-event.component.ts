@@ -9,7 +9,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { AjoutReservationComponent } from "../ajout-reservation/ajout-reservation.component";
 
 import {SalleService} from './../../service/salle.service';
-
+//import { ChatModule } from "../../chat/chat.module";
 
 import {Router , NavigationStart,ActivatedRoute, NavigationEnd, Event as NavigationEvent } from "@angular/router";
 import { Location } from "@angular/common";
@@ -200,7 +200,7 @@ public daynavig(): void {
   openDialog(): void {
     let dialogRef = this.dialog.open(AjoutReservationComponent, {
       width: '70%',
-      height:'90%',
+      height:'70%',
        
     });
     const sub = dialogRef.componentInstance.onAdd.subscribe((data) => {
@@ -226,7 +226,10 @@ public daynavig(): void {
       dialogRef.afterClosed().subscribe(result => {
         console.log('The dialog was closed');
         sub.unsubscribe();
+       
       });
+
+      
   }
 
 

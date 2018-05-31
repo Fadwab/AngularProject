@@ -127,7 +127,7 @@ _______________________________________________________________________
 
 
 
-
+<h3 style="text-align: center;">Gérer les Collaborateurs ici</h3>
  
   <button mat-icon-button (click)="refresh()">
     <mat-icon>refresh</mat-icon>
@@ -158,9 +158,9 @@ _______________________________________________________________________
       <mat-cell *matCellDef="let row"> {{row.nom}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="prenom">
+    <ng-container matColumnDef="username">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Prenom</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.prenom}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.username}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="email">
@@ -168,14 +168,11 @@ _______________________________________________________________________
       <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="adresse">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Adresse</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.adresse}}</mat-cell>
-    </ng-container>
+    
 
-    <ng-container matColumnDef="mot_de_passe">
+    <ng-container matColumnDef="password">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Mot de passe</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.mot_de_passe}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.password}}</mat-cell>
     </ng-container>
 
     <!-- actions -->
@@ -187,11 +184,11 @@ _______________________________________________________________________
       </mat-header-cell>
 
       <mat-cell *matCellDef="let row; let i=index;">
-        <a (click)="startEdit(i, row.matricule, row.nom, row.prenom, row.email, row.adresse, row.mot_de_passe)" class="pointer">
+        <a (click)="startEdit(i, row.matricule, row.nom, row.username, row.email,row.password)" class="pointer">
            <span class="glyphicon glyphicon-edit" ></span>
         </a>
 
-        <a (click)="deleteItem(i, row.matricule, row.nom, row.prenom, row.email)" class="pointer">
+        <a (click)="deleteItem(i, row.matricule, row.nom, row.username, row.email)" class="pointer">
           <span class="glyphicon glyphicon-trash"></span>
         </a>
       </mat-cell>
@@ -215,11 +212,13 @@ _______________________________________________________________________
 
   <mat-paginator #paginator
                 
-                 [pageIndex]="0"
-                 [pageSize]="10"
-                 [pageSizeOptions]="[5, 10, 25, 100]">
+               [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 800]"
+                 >
   </mat-paginator>
 </div>
+
+
 
 
 

@@ -1,53 +1,87 @@
-<div class="container">
-  <h3 mat-dialog-title>Add new User</h3>
+
+
+
+
+
+
+
+
+
+
+
+<table   style="width:120% ;  background-color:white !important ; color : black !important;">
 
   <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="matricule" [(ngModel)]="data.matricule" name="matricule" required >
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-    </div>
+   <tr>
 
+
+    
+      <td style="height:100px">
+  <label class="col-form-label" for="nom">Matricule</label>
+  </td>
+    
+     <td>
+        <input type="text" class="form-control" placeholder="Matricule" id="matricule" [(ngModel)]="data.matricule" name="matricule" required >
+   </td>
+      </tr> 
+    
     <!--Textarea for demo purposes-->
-    <div class="form">
-      <mat-form-field color="accent">
-        <textarea matInput #input class="form-control" placeholder="nom" [(ngModel)]="data.first" name="nom" required ></textarea>
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-    </div>
+    <!--Textarea for demo purposes-->
+    
+      <tr>
+           <td>
+  <label class="col-form-label" for="nom">Nom</label>
+  </td>
+     <td>
+        <input type="text" class="form-control" placeholder="Nom" id="nom" [(ngModel)]="data.nom" name="nom" required >
+        </td>
+      </tr>
+      
+    
 
     <!--Contains mat-hint for characters count and has maxLengt set-->
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #inputstate class="prenom" placeholder="prenom" [(ngModel)]="data.prenom" name="prenom" maxlength="10" required >
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        <mat-hint align="end">{{inputstate.value?.length || 0}}/10</mat-hint>
-      </mat-form-field>
-    </div>
+    
+       <tr>
+            <td style="height:100px">
+  <label class="col-form-label" for="nom">Prénom</label>
+  </td>
+     <td>
+        <input type="text" class="form-control" placeholder="Prenom" id="prenom" [(ngModel)]="data.username" name="username" maxlength="10" required >
+       
+    </td>
+      </tr>
 
-    <div class="form">
-      <mat-form-field color="email">
-        <input matInput placeholder="email" [(ngModel)]="data.email" name="email">
-      </mat-form-field>
-    </div>
+    
+      <tr>
+           <td>
+  <label class="col-form-label" for="nom">Email</label>
+  </td>
+     <td>
+        <input type="text" class="form-control" placeholder="Email" id="email" [(ngModel)]="data.email" name="email">
+       </td>
+      </tr>
+    
 
-    <div class="form">
-      <mat-form-field color="adresse">
-        <input matInput placeholder="adresse" [(ngModel)]="data.adresse" name="adresse">
-      </mat-form-field>
-    </div>
+   
 
-    <div class="form">
-      <mat-form-field color="mot_de_passe">
-        <input matInput placeholder="mot_de_passe" [(ngModel)]="data.mot_de_passe" name="mot_de_passe">
-      </mat-form-field>
-    </div>
+    
+       <tr>
+            <td style="height:100px">
+  <label class="col-form-label" for="nom">Mot de passe</label>
+  </td>
+     <td>
+        <input type="text" class="form-control" placeholder="Mot de passe" id="mot_de_passe" [(ngModel)]="data.password" name="mot_de_passe">
+       </td>
+      </tr>
+    
 
-    <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
-      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
-    </div>
   </form>
-</div>
+</table>
+
+<br><br>
+ <div class="col-md-2"></div>
+ <div class="col-md-10">
+<button mat-raised-button color="warn" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()" >Enregistrer</button>
+<button  mat-raised-button routerLink="." (click)="dialogRef.close()" >Annuler</button >
+ </div>

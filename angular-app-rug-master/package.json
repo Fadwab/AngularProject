@@ -28,6 +28,7 @@
     "angular-calendar": "^0.23.7",
     "angular-font-awesome": "^3.1.2",
     "angular-hammer": "^2.2.0",
+    "angular2-jwt": "^0.2.3",
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "fullcalendar": "^3.6.1",

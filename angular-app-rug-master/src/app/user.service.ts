@@ -104,16 +104,27 @@ deleteItem(matricule: number): void {
     });
    }
 
-updateItem(kanbanItem): void {
-    this.httpClient.put(this.URL + kanbanItem.matricule, kanbanItem).subscribe(data => {
-        this.dialogData = kanbanItem;
+//updateItem(matricule:number  ): void {
+  //  this.httpClient.put(this.URL + matricule).subscribe(data => {
+     //   this.dialogData = kanbanItem;
        
-      },
-      (err: HttpErrorResponse) => {
+    //  },
+     // (err: HttpErrorResponse) => {
         
-      }
-    );
+     // }
+   // );
+ // }
+
+
+
+updateItem(matricule:number,data) {
+    return this.httpClient.put(this.URL + matricule + '/', data);
   }
+
+
+
+
+
 }
 
 

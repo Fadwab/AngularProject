@@ -41,7 +41,7 @@ import { AddCollaborateurComponent } from "../add-collaborateur/add-collaborateu
   providers:[UserService]
 })
 export class GestionAcceeComponent implements OnInit {
-  displayedColumns = ['matricule', 'nom', 'prenom', 'email', 'adresse', 'mot_de_passe', 'actions'];
+  displayedColumns = ['matricule', 'nom', 'username', 'email', 'password', 'actions'];
   exampleDatabase: UserService | null;
   dataSource: ExampleDataSource | null;
   index: number;
@@ -82,6 +82,8 @@ export class GestionAcceeComponent implements OnInit {
 
  addNew(user: User) {
     const dialogRef = this.dialog.open(AddCollaborateurComponent, {
+     width: '30%',
+     
       data: {user: user }
     });
 
@@ -95,13 +97,13 @@ export class GestionAcceeComponent implements OnInit {
     });
   }
 
-  startEdit(i: number, matricule: number, nom: string, prenom: string, email: string, adresse: string, mot_de_passe: string) {
+  startEdit(i: number, matricule: number, nom: string, username: string, email: string,password: string) {
     this.matricule = matricule;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
     const dialogRef = this.dialog.open(EditCollaborateurComponent, {
-      data: {matricule: matricule, nom:nom , prenom: prenom, email: email, adresse: adresse, mot_de_passe: mot_de_passe}
+      data: {matricule: matricule, username:username , nom: nom, email: email, password: password}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -116,11 +118,11 @@ export class GestionAcceeComponent implements OnInit {
     });
   }
 
-  deleteItem(i: number, matricule: number, nom: string, prenom: string, email: string ,adresse :string) {
+  deleteItem(i: number, matricule: number, nom: string, username: string, email: string) {
     this.index = i;
     this.matricule= matricule;
     const dialogRef = this.dialog.open( DeleteCollaborateurComponent, {
-      data: {matricule:matricule, nom: nom, email: email, adresse:adresse}
+      data: {matricule:matricule, username:username, email: email}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -204,7 +206,7 @@ export class ExampleDataSource extends DataSource<User> {
     return Observable.merge(...displayDataChanges).map(() => {
       // Filter data
       this.filteredData = this._exampleDatabase.data.slice().filter((user: User) => {
-        const searchStr = (user.matricule + user.nom + user.prenom + user.adresse).toLowerCase();
+        const searchStr = (user.matricule + user.nom + user.username).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 
@@ -235,10 +237,9 @@ export class ExampleDataSource extends DataSource<User> {
       switch (this._sort.active) {
         case 'matricule': [propertyA, propertyB] = [a.matricule, b.matricule]; break;
         case 'nom': [propertyA, propertyB] = [a.nom, b.nom]; break;
-        case 'prenom': [propertyA, propertyB] = [a.prenom, b.prenom]; break;
+        case 'username': [propertyA, propertyB] = [a.username, b.username]; break;
         case 'email': [propertyA, propertyB] = [a.email, b.email]; break;
-        case 'adresse': [propertyA, propertyB] = [a.adresse, b.adresse]; break;
-        case 'mot_de_passe': [propertyA, propertyB] = [a.mot_de_passe, b.mot_de_passe]; break;
+        case 'password': [propertyA, propertyB] = [a.password, b.password]; break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

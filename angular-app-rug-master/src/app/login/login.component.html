@@ -1,32 +1,33 @@
-<div class="login-box">
+
+    <div class="alert alert-danger" *ngIf="mode==1">
+    <strong>nooooooooooooo...</strong>
+  </div>
+<div class="login-box" >
     <div class="app-header">
-        <h3 class="app-heading">Welcome</h3>
+        <h3 class="app-heading">S'IDENTIFIER</h3>
     </div>
     
     <div class="centre" style=" max-width: 500px;position: absolute; width: 300px; height:200px; top:0; bottom:0; left:0; right: 0; margin: auto;">
         <br> <br> 
-        <div class="alert alert-danger" *ngIf="mode==1">
-    <strong>nooooooooooooo...</strong>
-  </div>
-            <form #f="ngForm" (ngSubmit)="onLogin(f.value)">
+    
+            <form #f="ngForm" (ngSubmit)="onLogin(f.value)" style="background-color: transparent;">
 
         <div class="example-container">
-            <mat-form-field>
-                <input matInput  ngModel="username" type="text" name="username">
-            </mat-form-field>
-            <mat-form-field>
+         
+            <mat-form-field class="example-full-width">
                 <input matInput ngModel="email" type="email" name="email">
             </mat-form-field>
-            <mat-form-field>
+            
+            <mat-form-field class="example-full-width">
                 <input matInput  ngModel="password" type="text" name="password">
             </mat-form-field>
             <br>
-            <button mat-raised-button color="warn">Login</button>
+            <button mat-raised-button color="warn">S'identifier</button>
         </div>
             </form>
     </div>
 </div>
 
-<a (click)="navigate()">Your title</a>
+
 
 <router-outlet></router-outlet>

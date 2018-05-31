@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -17,23 +17,28 @@ import { ChatModule } from "./chat/chat.module";
 import { SalleModule } from "./salle/salle.module";
 import { SharedModule } from "./shared/shared.module";
 import { LoginService } from "./login.service";
-import { AppContenuComponent } from './app-contenu/app-contenu.component';
-import { TstComponent } from './tst/tst.component';
+import { CollaborateurComponent } from './collaborateur/collaborateur.component';
+import { AdminComponent } from './admin/admin.component';
 import { SanitizeHtmlPipe } from './sanitize-html.pipe';
-
+import { NavComponent } from './nav/nav.component';
+import { UtilsService } from "./utils.service";
+import { AuthguardGuard } from "./authguard.guard";
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AppContenuComponent,
-    TstComponent,
+   CollaborateurComponent,
+    AdminComponent,
     SanitizeHtmlPipe,
+    NavComponent,
+   
+    
     
   ],
   imports: [
 
     CommonModule,
-    BrowserModule,
+   
     AppRoutingModule,
     //AppContenuComponent,
     //FullCalendarModule,
@@ -43,12 +48,18 @@ import { SanitizeHtmlPipe } from './sanitize-html.pipe';
     ChatModule,
     SharedModule
   ],
+  exports:[
+AdminComponent,
+
+  ],
 
   providers: [
     UserService,
     ChatService,
     SalleService,
-    LoginService
+    LoginService,
+    UtilsService,
+     AuthguardGuard
   ],
   bootstrap: [AppComponent],
 

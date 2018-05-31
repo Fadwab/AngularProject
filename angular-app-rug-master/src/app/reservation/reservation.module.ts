@@ -13,12 +13,18 @@ import { ReservationEventWeekComponent } from './reservation-event-week/reservat
 
 import { UsertableComponent} from './usertable/usertable.component';
 import { SharedModule } from "../shared/shared.module";
+import { ChatModule } from "../chat/chat.module";
+import { AddSalleComponent } from './add-salle/add-salle.component';
+import { ReservationRoutingModule } from './reservation-routing.module';
 @NgModule({
     imports: [
         CommonModule,
-        SharedModule
+        SharedModule,
+        ChatModule,
+        
     ],
     declarations: [
+      
         ReservationComponent,
         ConsultReservationComponent,
         DeleteReservationComponent,
@@ -28,6 +34,9 @@ import { SharedModule } from "../shared/shared.module";
         AjoutReservationComponent,
         EditReservationComponent,
         UsertableComponent,
+        AddSalleComponent,
+        
+        
     ],
     entryComponents: [
         EditReservationComponent,

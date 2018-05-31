@@ -169,6 +169,13 @@ export class AjoutReservationComponent implements OnInit {
   }
 
  onButtonClicked() {
+
+  this.recherche.heure_deb.setFullYear(this.recherche.date.getFullYear());
+    this.recherche.heure_deb.setMonth(this.recherche.date.getMonth());
+    this.recherche.heure_deb.setDate(this.recherche.date.getDate());
+    this.recherche.heure_fin.setFullYear(this.recherche.date.getFullYear());
+    this.recherche.heure_fin.setMonth(this.recherche.date.getMonth());
+    this.recherche.heure_fin.setDate(this.recherche.date.getDate());
    this.recherche.color = {
      primary: this.recherche.myColor,
      secondary: this.recherche.myColor,
@@ -176,14 +183,24 @@ export class AjoutReservationComponent implements OnInit {
    console.log(this.recherche);
    this.recherche.statut = "validée";
    this.recherche.user = 1;
+   this.recherche.salle = 1
     this.salleService.addReservation(this.recherche).subscribe(
-      (item) => {
+     
+     (item) => {
+
+     
         this.onAdd.emit(item);
         this.dialogRef.close();
       },
-      (error) => console.log(error)
-    );
-   
+     (error) => console.log(error)
+);
+
+ this.salleService.rechercheSalle(this.recherche).subscribe(
+      (items: any[]) => { this.salles = items },
+      (error) => { console.log(error) }
+  );
+
+  // window.location.reload();
   }
 
 
@@ -211,7 +228,7 @@ export class AjoutReservationComponent implements OnInit {
     this.salleService.rechercheSalle(this.recherche).subscribe(
       (items: any[]) => { this.salles = items },
       (error) => { console.log(error) }
-    );
+  );
      
     console.log(this.recherche);
   }

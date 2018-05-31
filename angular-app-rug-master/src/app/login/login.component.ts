@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from "../login.service";
 import {Router} from "@angular/router";
 import { Location } from "@angular/common";
+import { UtilsService } from "../utils.service";
 
 @Component({
   selector: 'app-login',
@@ -12,22 +13,42 @@ export class LoginComponent implements OnInit {
 mode:number=0;
 
 
-  constructor(private authService:LoginService , private router:Router,private location: Location) { }
+  constructor(private utlis:UtilsService,private authService:LoginService , private router:Router,private location: Location) { }
 
-public navigate(): void {
-   this.router.navigateByUrl('/articledetail', {skipLocationChange: true});
-   this.location.replaceState('/articledetail');
 
-}
 
   onLogin(user){
+    //user.preventDefault();
     console.log(user);
+    
     this.authService.login(user)
       .subscribe(resp=>{
-       //let jwt=resp.headers.get("Authorization");
-        //console.log(jwt);
+
+        this.utlis.setUserLoggedIn();
+       if(this.authService.isAdmin())
+         
        
-        this.router.navigateByUrl("/calendar");
+//var role = user.target.elements[0].value;
+ //console.log(role);
+//if (role ==1)
+  
+     
+    
+    this.router.navigateByUrl("/admin");
+
+    
+    this.router.navigateByUrl('/collaborateur')
+
+ 
+
+      // let jwt=resp.headers.get("Authorization");
+       //this.authService.saveToken(jwtToken);
+
+       // console.log(resp.headers.get("Authorization"));
+       
+        
+ 
+        //this.router.navigateByUrl('/collaborateur')
       },
       err=>{
         this.mode=1;
