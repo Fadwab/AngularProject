@@ -1,5 +1,9 @@
 
-    <div class="alert alert-danger" *ngIf="mode==1">
+    
+<div class="image">
+
+
+<div class="alert alert-danger" *ngIf="mode==1">
     <strong>nooooooooooooo...</strong>
   </div>
 <div class="login-box" >
@@ -13,14 +17,24 @@
             <form #f="ngForm" (ngSubmit)="onLogin(f.value)" style="background-color: transparent;">
 
         <div class="example-container">
+
+
+
+
+<div class="form-group">
+  <label class="col-form-label" style="color:white;opacity:2;" for="email">Email</label>
+  
+  <input type="text" class="form-control"  type="email" ngModel="email" name="email" id="email">
+</div>
+
+<div class="form-group">
+  <label class="col-form-label" style="color:white;opacity:2;" for="password">Mot de passe</label>
+  <input type="text" class="form-control"  ngModel="password" type="text" name="password" id="password">
+</div>
          
-            <mat-form-field class="example-full-width">
-                <input matInput ngModel="email" type="email" name="email">
-            </mat-form-field>
             
-            <mat-form-field class="example-full-width">
-                <input matInput  ngModel="password" type="text" name="password">
-            </mat-form-field>
+            
+            
             <br>
             <button mat-raised-button color="warn">S'identifier</button>
         </div>
@@ -31,3 +45,4 @@
 
 
 <router-outlet></router-outlet>
+</div>

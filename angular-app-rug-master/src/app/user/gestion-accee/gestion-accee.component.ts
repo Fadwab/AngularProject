@@ -41,7 +41,7 @@ import { AddCollaborateurComponent } from "../add-collaborateur/add-collaborateu
   providers:[UserService]
 })
 export class GestionAcceeComponent implements OnInit {
-  displayedColumns = ['matricule', 'nom', 'username', 'email', 'password', 'actions'];
+  displayedColumns = ['matricule', 'nom', 'username', 'email',, 'actions'];
   exampleDatabase: UserService | null;
   dataSource: ExampleDataSource | null;
   index: number;

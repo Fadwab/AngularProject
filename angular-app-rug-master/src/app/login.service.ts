@@ -14,7 +14,11 @@ private host:string="http://localhost:8000/webapi/login";
    return this.http.get(this.host,user.username); 
   }
   login(user){
+    console.log(this.http.post(this.host,user));
+    console.log("test Role"+JSON.stringify( this.http.post(this.host,user, {observe : "response"})))
+    
     return this.http.post(this.host,user, {observe : "response"});
+    
   }
 
   logout(){
@@ -25,16 +29,11 @@ private host:string="http://localhost:8000/webapi/login";
   loadToken(){
     this.jwtToken=localStorage.getItem("token");
   }
- isAdmin(){
-   for(let r of this.roles){
-     if (r == 0) return true;
-console.log(r);
-   
-   
-return false;
 
-   }
 
- }
+
+
+
+ 
 
 }

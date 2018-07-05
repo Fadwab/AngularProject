@@ -8,5 +8,9 @@ import { UtilsService } from "./utils.service";
     constructor(private user: UtilsService , private router : Router){} 
    
       canActivate( next: ActivatedRouteSnapshot, 
-        state: RouterStateSnapshot): boolean { this.router.navigate(['/']);
-         return this.user.getUserLoggedIn(); }}
+        state: RouterStateSnapshot): boolean { 
+          if (this.user.isUserLoggedIn==false){
+          this.router.navigate(['/']);
+          }
+         return this.user.getUserLoggedIn(); 
+        }}

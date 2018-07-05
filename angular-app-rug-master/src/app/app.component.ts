@@ -18,6 +18,7 @@ mode:number=0;
 
   onLogin(user){
     console.log(user);
+    
     this.authService.login(user)
       .subscribe(resp=>{
        let jwt=resp.headers.get("Authorization");

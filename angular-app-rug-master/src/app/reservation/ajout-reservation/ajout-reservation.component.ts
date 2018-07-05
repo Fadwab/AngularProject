@@ -182,7 +182,7 @@ export class AjoutReservationComponent implements OnInit {
    }
    console.log(this.recherche);
    this.recherche.statut = "validée";
-   this.recherche.user = 1;
+   this.recherche.user = 2;
    this.recherche.salle = 1
     this.salleService.addReservation(this.recherche).subscribe(
      

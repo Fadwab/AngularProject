@@ -17,7 +17,8 @@ const routes: Routes = [
     {path: 'admin' ,component:AdminComponent, pathMatch:'prefix', canActivate:[AuthguardGuard],
     children: [  
       
-      { path: '', component: ReservationEventComponent, },
+      { path: 'month', component: ReservationEventComponent, },
+ { path: '', redirectTo:'month',pathMatch:"full" },
       { path: 'reserv', component:ReservationComponent },
             {
                 path:'gestion',
@@ -33,9 +34,11 @@ const routes: Routes = [
     {path: 'collaborateur' ,component:CollaborateurComponent, canActivate:[AuthguardGuard],
   children: [  
       
-      { path: '', component: ReservationEventComponent, },
+     { path: 'month', component: ReservationEventComponent, },
+ { path: '', redirectTo:'month',pathMatch:"full" },
       { path: 'reserv', component:ReservationComponent },
       { path: 'lesSalles' ,component: LesSallesComponent},
+       { path: 'chat', component: ChatComponent,},
   ]
   
   
@@ -50,7 +53,7 @@ const routes: Routes = [
      { path: 'reserv', component:ReservationComponent },
     //{ path: 'gestion', component: GestionAcceeComponent, },  
    // { path: 'gestionSalles', component: GestionSallesComponent, },
-    { path: 'chat', component: ChatComponent,},
+    //{ path: 'chat', component: ChatComponent,},
   
     { path: 'day' ,component: ReservationEventDayComponent},
      { path: 'week' ,component: ReservationEventWeekComponent},

@@ -109,7 +109,7 @@ affEquip(i: number, salle_id: number,nom:string, climatisation:boolean , tableau
  addNew(salle: Salle) {
     const dialogRef = this.dialog.open(AddSalleComponent, {
      width: '40%',
-      height:'70%',
+      height:'100%',
       data: {salle: salle }
     });
 

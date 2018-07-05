@@ -119,17 +119,6 @@ export class ReservationEventComponent implements OnInit {
 
 
 
-public navigate(): void {
-   this.router.navigateByUrl('/week', {skipLocationChange: true});
-   this.location.replaceState('/week');
-
-}
-
-public daynavig(): void {
-   this.router.navigateByUrl('/day', {skipLocationChange: true});
-   this.location.replaceState('/day');
-
-}
 
 
 

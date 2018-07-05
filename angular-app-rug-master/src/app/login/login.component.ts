@@ -15,31 +15,32 @@ mode:number=0;
 
   constructor(private utlis:UtilsService,private authService:LoginService , private router:Router,private location: Location) { }
 
-
+//public isUserLoggedIn =false;
 
   onLogin(user){
     //user.preventDefault();
     console.log(user);
     
+     this.utlis.setUserLoggedIn();
     this.authService.login(user)
       .subscribe(resp=>{
-
         this.utlis.setUserLoggedIn();
-       if(this.authService.isAdmin())
-         
-       
+       console.log(this.utlis.getUserLoggedIn());
+       console.log(user);
+       if (user.email == 'admin123@gmail.com' && user.password == 'admin123')
+         {
 //var role = user.target.elements[0].value;
  //console.log(role);
 //if (role ==1)
-  
-     
-    
+         
     this.router.navigateByUrl("/admin");
+         }
+  else{
 
     
-    this.router.navigateByUrl('/collaborateur')
+    this.router.navigateByUrl('/collaborateur');
 
- 
+ }
 
       // let jwt=resp.headers.get("Authorization");
        //this.authService.saveToken(jwtToken);

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 
 
  @Injectable() export class UtilsService {
-    private isUserLoggedIn; private username;
+    public isUserLoggedIn;
+     private username;
      constructor(){ this.isUserLoggedIn=false; } 
      setUserLoggedIn(){
         this.isUserLoggedIn=true; } 
